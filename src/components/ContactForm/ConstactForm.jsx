@@ -8,22 +8,8 @@ export const Form = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const handleChange = evt => {
-    const { name, value } = evt.target;
-
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-
-      case 'number':
-        setNumber(value);
-        break;
-
-      default:
-        return;
-    }
-  };
+  const changeName = evt => setName(evt.target.value);
+  const changeNumber = evt => setNumber(evt.target.value);
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -45,7 +31,7 @@ export const Form = ({ onSubmit }) => {
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         value={name}
-        onChange={handleChange}
+        onChange={changeName}
         required
       />
       <Input
@@ -54,7 +40,7 @@ export const Form = ({ onSubmit }) => {
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         value={number}
-        onChange={handleChange}
+        onChange={changeNumber}
         required
       />
       <Button type="submit">Add Contact</Button>
